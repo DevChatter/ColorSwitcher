@@ -33,14 +33,9 @@ namespace ColorSwitcher
 
             _webHost = Host.CreateDefaultBuilder()
                 .ConfigureWebHostDefaults(builder => builder.UseStartup<Web.Startup>())
-                .ConfigureServices(ConfigureServices)
                 .Build();
 
             _webHost.Start();
-        }
-
-        private void ConfigureServices(IServiceCollection services)
-        {
         }
 
         private void OnExitClick(object sender, EventArgs e)
