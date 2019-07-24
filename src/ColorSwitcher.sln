@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorSwitcher", "ColorSwitc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorSwitcher.Web", "ColorSwitcher.Web\ColorSwitcher.Web.csproj", "{21DEC6D1-48B3-4983-9EBC-C51C1311F309}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorSwitcher.Core", "ColorSwitcher.Core\ColorSwitcher.Core.csproj", "{BE7E2CC1-6672-428D-857A-FD0EEB583A56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{21DEC6D1-48B3-4983-9EBC-C51C1311F309}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21DEC6D1-48B3-4983-9EBC-C51C1311F309}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21DEC6D1-48B3-4983-9EBC-C51C1311F309}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE7E2CC1-6672-428D-857A-FD0EEB583A56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE7E2CC1-6672-428D-857A-FD0EEB583A56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE7E2CC1-6672-428D-857A-FD0EEB583A56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE7E2CC1-6672-428D-857A-FD0EEB583A56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

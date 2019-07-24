@@ -1,13 +1,15 @@
-﻿using System;
+﻿using ColorSwitcher.Core;
+using ColorSwitcher.Extensions;
+using ColorSwitcher.Web;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
-using ColorSwitcher.Extensions;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Hosting.Internal;
+using Microsoft.Extensions.Configuration;
 
 namespace ColorSwitcher
 {
@@ -32,8 +34,22 @@ namespace ColorSwitcher
             };
 
             _webHost = Host.CreateDefaultBuilder()
-                .ConfigureWebHostDefaults(builder => builder.UseStartup<Web.Startup>())
+                .ConfigureWebHostDefaults(
+                    hostBuilder =>
+                    {
+                        hostBuilder.UseStartup<Startup>();
+                    })
+                .ConfigureAppConfiguration(configBuilder => configBuilder
+                        .AddJsonFile("appsettings.json",
+                            optional: false,
+                            reloadOnChange: true)
+                        .AddEnvironmentVariables()
+                        .AddUserSecrets<MyAppContext>())
                 .Build();
+
+            var chatBot = _webHost.Services.GetService<ChatBot>();
+
+            chatBot.Start();
 
             _webHost.Start();
         }

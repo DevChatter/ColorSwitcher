@@ -4,13 +4,16 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
+    <UserSecretsId>9A7EFFD6-B5BC-421A-B9B9-AA5FEC96C33B</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.6" />
+    <PackageReference Include="TwitchLib" Version="3.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="appsettings.json" />
     <None Remove="devchatterlogo.ico" />
   </ItemGroup>
 
@@ -20,6 +23,16 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ColorSwitcher.Web\ColorSwitcher.Web.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
