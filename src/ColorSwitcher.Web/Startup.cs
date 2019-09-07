@@ -1,6 +1,9 @@
+using System.Reflection;
 using ColorSwitcher.Core;
+using ColorSwitcher.Core.TwitchAuth;
 using ColorSwitcher.Web.Hubs;
 using ColorSwitcher.Web.Hubs.Emitters;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -29,7 +32,13 @@ namespace ColorSwitcher.Web
             services.AddSingleton<ChatBot>();
             services.AddSingleton<ITwitchClient, TwitchClient>();
 
+            services.AddSingleton<TwitchAuthentication>();
+
             services.AddTransient<IColorEmitter, ColorEmitter>();
+
+            services.AddMediatR(Assembly.GetAssembly(typeof(AccessTokenReceived)));
+
+            services.AddMvc();
 
             services.AddSignalR();
         }
@@ -46,9 +55,13 @@ namespace ColorSwitcher.Web
 
             app.UseStaticFiles();
 
+            app.UseDefaultFiles();
+
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapFallbackToFile("", "index.html");
                 endpoints.MapHub<ColorHub>("/ColorHub");
+                endpoints.MapControllers();
             });
         }
     }

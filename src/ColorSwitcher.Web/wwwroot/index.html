@@ -2,23 +2,32 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Color Switching Page</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aspnet-signalr/1.1.4/signalr.js"></script>
+    <title>Home Page</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script language="javascript">
-        var connection = new signalR.HubConnectionBuilder().withUrl("/ColorHub").build();
+        if(window.location.hash) {
+            let fragments = window.location.hash
+                .substring(1)
+                .split('&')
+                .map(x => x.split('=')[1]);
 
-        connection.on("ColorChanged", function (color) {
-            document.body.style.backgroundColor = color;
-        });
+            let data = {
+                accessToken: fragments[0],
+                scope: fragments[1],
+                state: fragments[2],
+                tokenType: fragments[3]
+            };
 
-        connection.start().then(function () {
-        }).catch(function (err) {
-            return console.error(err.toString());
-        });
-
+            axios.post('/api/TwitchAuth', data)
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
     </script>
 </head>
 <body id="body">
-<span id="color">Replace this.</span>
 </body>
 </html>
