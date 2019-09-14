@@ -26,6 +26,7 @@ namespace ColorSwitcher.Core.TwitchAuth
                 _twitchSettings.AccessToken = $"oauth:{request.AccessToken}";
 
                 // TODO: Save the change.
+                // https://stackoverflow.com/questions/40970944/how-to-update-values-into-appsetting-json/42705862
 
                 return Task.FromResult(true);
             }

@@ -49,7 +49,7 @@ namespace ColorSwitcher.Core
             try
             {
                 Color color = ColorTranslator.FromHtml(colorString);
-                _colorEmitter.ShowNewColor(ColorTranslator.ToHtml(color));
+                _colorEmitter.ShowNewColor($"#{color.R:X2}{color.G:X2}{color.B:X2}");
             }
             catch
             {

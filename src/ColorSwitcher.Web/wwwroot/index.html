@@ -19,8 +19,8 @@
             };
 
             axios.post('/api/TwitchAuth', data)
-                .then(function (response) {
-                    console.log(response);
+                .then(function () {
+                    window.close();
                 })
                 .catch(function (error) {
                     console.log(error);
