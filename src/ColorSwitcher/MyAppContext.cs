@@ -1,7 +1,9 @@
 ﻿using ColorSwitcher.Core;
+using ColorSwitcher.Core.TwitchAuth;
 using ColorSwitcher.Extensions;
 using ColorSwitcher.Web;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -10,8 +12,6 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
-using ColorSwitcher.Core.TwitchAuth;
-using Microsoft.Extensions.Configuration;
 
 namespace ColorSwitcher
 {
@@ -23,9 +23,9 @@ namespace ColorSwitcher
 
         public MyAppContext()
         {
-            var updateTwitchAuthItem = new MenuItem("Update Twitch OAuth", OnUpdateTwitchAuthClick);
+            var updateTwitchAuthItem = new ToolStripMenuItem("Update Twitch OAuth", null, OnUpdateTwitchAuthClick);
 
-            var exitMenuItem = new MenuItem("Exit", OnExitClick);
+            var exitMenuItem = new ToolStripMenuItem("Exit", null, OnExitClick);
 
             using Stream iconStream = Assembly.GetExecutingAssembly()
                 .GetManifestResourceStream("ColorSwitcher.devchatterlogo.ico");
@@ -34,7 +34,7 @@ namespace ColorSwitcher
             _notifyIcon = new NotifyIcon
             {
                 Icon = icon,
-                ContextMenu = new ContextMenu(new []{ updateTwitchAuthItem, exitMenuItem }),
+                ContextMenuStrip = new ContextMenuStrip { Items = { updateTwitchAuthItem, exitMenuItem } },
                 Visible = true
             };
 
